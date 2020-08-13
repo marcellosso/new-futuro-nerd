@@ -1,9 +1,15 @@
 {
   "expo": {
-    "name": "futuro-nerd",
+    "name": "Futuro Nerd",
+    "description": "Futuro Nerd",
     "slug": "futuro-nerd",
+    "privacy": "public",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -17,10 +23,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "yes",
+      "buildNumber": "1.0.0"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "android": {
+      "package": "com.futuronerd.futuronerd",
+      "permissions": [
+        "READ_PHONE_STATE"
+      ],
+      "versionCode": 1
+    },
+    "scheme": "exp003469eb40fa4c929b83d2b4940a1dd8"
   }
 }

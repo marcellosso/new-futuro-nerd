@@ -37,7 +37,7 @@ import {
 
 class RecuperarSenha extends React.Component {
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // alert(this.props.modulo);
   }
 

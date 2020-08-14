@@ -13,7 +13,7 @@ import Rodape from './Rodape';
 import {URL_ADMIN_FUTURONERD, URL_CONSULTA_CEP} from '../../config/Constants';
 
 class PedidosFilhoPai extends React.Component{
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
     this.props.produtosSolicitadosFilho(13);
   }
 

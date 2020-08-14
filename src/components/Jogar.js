@@ -18,7 +18,7 @@ class Jogar extends React.Component{
     }
   }
 
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
     this.buscaSeries();
   }
 

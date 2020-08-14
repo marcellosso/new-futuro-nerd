@@ -26,7 +26,7 @@ class ProdutosPai extends React.Component{
     }
   }
 
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
     this.setState({
       produto_cep: this.props.cepPaiAtual,
       produto_uf: this.props.ufPaiAtual,
@@ -38,7 +38,7 @@ class ProdutosPai extends React.Component{
     })
   }
 
-  componentWillReceiveProps(){
+  UNSAFE_componentWillReceiveProps(){
     this.setState({
       produto_cep: this.props.cepPaiAtual,
       produto_uf: this.props.ufPaiAtual,

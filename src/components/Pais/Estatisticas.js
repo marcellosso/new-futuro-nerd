@@ -28,7 +28,7 @@ import Menu from "../../config/Menu";
 
 class Estatisticas extends React.Component{
 
-    componentWillMount(){
+    UNSAFE_componentWillMount(){
         this.props.listaDadosFilhos(this.props.id_pai);
     }
 

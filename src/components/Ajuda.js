@@ -10,7 +10,7 @@ import Menu from '../config/Menu';
 
 class Ajuda extends React.Component{
 
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
     this.props.listaDadosAjuda();
   }
 

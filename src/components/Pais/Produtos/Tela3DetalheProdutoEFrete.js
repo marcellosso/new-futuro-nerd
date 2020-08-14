@@ -106,7 +106,7 @@ class Tela3DetalheProdutoEFrete extends React.Component {
         this.props.limpaDadosFinalizaPagamento()
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.setState({
             produto_cep: this.props.cepPaiAtual,
             produto_uf: this.props.ufPaiAtual,
@@ -132,7 +132,7 @@ class Tela3DetalheProdutoEFrete extends React.Component {
     //     })
     // }
 
-    componentWillReceiveProps() {
+    UNSAFE_componentWillReceiveProps() {
         //this._validarInicioPagamento();
     }
 

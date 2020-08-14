@@ -51,7 +51,7 @@ class ConfiguracoesPai extends React.Component{
 
   }
 
-  componentWillReceiveProps(){
+  UNSAFE_componentWillReceiveProps(){
     console.log('Pai:' + this.props.cep)
   }
 

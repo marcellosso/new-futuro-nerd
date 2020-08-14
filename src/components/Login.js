@@ -23,6 +23,7 @@ import { Actions } from 'react-native-router-flux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { modificaEmailFilho, modificaSenhaFilho, autenticaFilho } from '../actions/AutenticacaoActions';
+import { AsyncStorage } from 'react-native';
 
 class Login extends React.Component {
 
@@ -56,15 +57,22 @@ class Login extends React.Component {
     renderBtnLoginNew() {
         if (this.props.loading == false) {
             return (
-                <View style={{ alignItems: 'center' }}>
+                <View style={{ alignItems: 'center', width: '100%' }}>
                     <Button style={styles.newBtnEntrar} onPress={() => this._autenticaFilho()}>
                         <Text style={styles.txtBotao2}> ENTRAR FILHO </Text>
+                        {/* <Text style={{ textAlign: 'center', marginRight: 20 }}> ENTRAR FILHO </Text> */}
                     </Button>
                 </View>
+                // <View style={{ alignItems: 'center', width: '100%' }}>
+                //     <Button style={styles.newBtnEntrar} onPress={() => this._autenticaFilho()}>
+                //         <Text style={styles.txtBotao2}> ENTRAR FILHO </Text>
+                //         {/* <Text style={{ textAlign: 'center', marginRight: 20 }}> ENTRAR FILHO </Text> */}
+                //     </Button>
+                // </View>
             );
         } else {
             return (
-                <View style={{ alignItems: 'center' }}>
+                <View style={{ alignItems: 'center', width: '100%' }}>
                     <Button style={styles.newBtnEntrar} onPress={() => null}>
                         <ActivityIndicator size="small" />
                     </Button>
@@ -123,8 +131,9 @@ class Login extends React.Component {
                                             onChangeText={texto => this.props.modificaSenhaFilho(texto)}
                                         />
                                         {/*</Item>*/}
+                                        {this.renderBtnLoginNew()}
                                     </View>
-                                    {this.renderBtnLoginNew()}
+                                    
                                     <View style={{ alignItems: 'center' }}>
                                         <Button style={{ backgroundColor: "transparent", border: 0, elevation: 0 }} onPress={() => Actions.recuperarsenha({ modulo: 'filho' })}>
                                             <Text style={{ color: '#3f77d1' }}> Esqueci minha senha </Text>
@@ -242,6 +251,7 @@ const styles = StyleSheet.create({
         paddingLeft: 0,
         fontSize: 15,
         borderBottomWidth: 2,
+        width: '100%',
         // color: '#eee',
         // borderBottomColor: '#eee'
     },
@@ -253,12 +263,14 @@ const styles = StyleSheet.create({
     newBtnEntrar: {
         /*backgroundColor:'#00796B',*/
         backgroundColor: '#2A9AE5',
-        margin: 15,
+        margin: 0,
+        marginTop: 30,
         borderRadius: 50,
         // textAlign: 'center',
         // elevation: 20,
-        width: '80%',
+        width: '100%',
         // marginLeft: 55,
+        display: 'flex',
         justifyContent: 'center'
     },
     btnEsqSenha: {
@@ -285,7 +297,6 @@ const styles = StyleSheet.create({
         color: '#000',
         fontSize: 18,
         fontWeight: '500',
-        alignSelf: 'center'
     },
     txtBotao3: {
         color: '#ffffff',
@@ -315,7 +326,11 @@ const styles = StyleSheet.create({
         paddingBottom: 30,
         paddingLeft: 55,
         paddingRight: 55,
-        marginTop: 50
+        marginTop: 50,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column'
     },
     Iteminputs: {
         padding: 15,

@@ -35,7 +35,7 @@ class Principal extends React.Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     //this.buscaMaterias();
   }
 

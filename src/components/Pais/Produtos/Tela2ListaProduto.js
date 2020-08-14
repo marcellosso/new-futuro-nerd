@@ -47,7 +47,7 @@ class Tela2ListaProduto extends React.Component {
         'Contestado'
     ];
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         console.log('Id filho selecionado: ' + this.props.id_filho_selecionado);
         this.props.produtosSolicitadosFilho(this.props.id_filho_selecionado);
     }

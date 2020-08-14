@@ -9,7 +9,7 @@ import {URL_ADMIN_FUTURONERD} from '../../config/Constants';
 
 class Produtos extends React.Component{
 
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
     this.props.buscaProdutos();
   }
 

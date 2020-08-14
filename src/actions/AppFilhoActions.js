@@ -217,6 +217,7 @@ export const relatorioQuestoesCompletadas = (id_serie,id_filho) => {
         axios.get(URL_API_FUTURONERD + `/filho/questoes/relatorio/completadas/${id_serie}/${id_filho}`)
             .then(res => {
                 salvaRelatorioQuestoesCompletadas(dispatch,res.data);
+                
             })
             .catch(erro => {
                 alert(erro);

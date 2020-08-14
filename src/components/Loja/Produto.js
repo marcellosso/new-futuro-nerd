@@ -21,7 +21,7 @@ class Produto extends React.Component {
     }
   }
 
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
     this.props.limparBuscaProduto();
     this.props.buscaProduto(this.props.idProduto);
     this.verificarStatus(this.props.id,this.props.idProduto);

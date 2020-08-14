@@ -96,6 +96,7 @@ export default (state = INITIAL_STATE, action) => {
                 respostaErrada: action.payload.resposta_errada,
                 respostaErrada1: action.payload.resposta_errada1,
                 respostaErrada2: action.payload.resposta_errada2,
+                tmepo: action.payload.tempo
             }
         case SALVA_QUESTOES_RESPONDIDAS:
             return {

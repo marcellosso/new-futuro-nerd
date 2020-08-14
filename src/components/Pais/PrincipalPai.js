@@ -37,7 +37,7 @@ class PrincipalPai extends React.Component{
         }
     }
 
-    componentWillMount(){
+    UNSAFE_componentWillMount(){
         this.props.buscaDadosPai(this.props.idPai);
         this.getSaudacao();
     }

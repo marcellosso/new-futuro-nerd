@@ -10,11 +10,11 @@ import Rodape from "./Rodape";
 
 class Plano extends React.Component {
         
-    componentWillMount(){
+    UNSAFE_componentWillMount(){
         this.props.listaDadosPlano();
       }
 
-    componentWillReceiveProps(){
+    UNSAFE_componentWillReceiveProps(){
         this.props.buscaDadosPai(this.props.id);
     }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppState, Text, StyleSheet, TouchableOpacity, ImageBackground, Image, View, Dimensions, PanResponder, Animated, Alert } from 'react-native';
+import { AppState, Text, StyleSheet, TouchableOpacity, ImageBackground, Image, View, Dimensions, PanResponder, Animated, Alert, AsyncStorage } from 'react-native';
 import { Container, Body, Card, Icon, Content, CardItem, Col, Grid, Row, Button, Right } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -32,11 +32,13 @@ class Principal extends React.Component {
 
     this.state = {
       materias: [],
+      gender: '',
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     //this.buscaMaterias();
+    this.chooseGender();
   }
 
   componentDidMount() {
@@ -46,11 +48,25 @@ class Principal extends React.Component {
       if (AppState.currentState == 'active' && this.props.contator_ativo) { // 'background' 'inactive'
         // console.log("The contador is now active!");
         this.props.updateActiveTime(this.props.id_filho);
+
       } else {
+        
         clearInterval(myInterval);
         // console.log("The contador is now inactive!");
       }
-    }, 5000)
+    }, 60000)
+  }
+
+  async chooseGender() {
+    let gender = '';
+
+    gender = await AsyncStorage.getItem('@FuturoNerd/GenderIcon');
+
+    if (gender == "Menino") {
+      this.setState({ gender: "Menino" })
+    } else {
+      this.setState({ gender: "Menina " })
+    }
   }
 
   buscaMaterias() {
@@ -184,28 +200,7 @@ class Principal extends React.Component {
       }
     })
 
-    function getRandomMateria() {
-      let random = Math.floor(Math.random() * (5 - 1) + 1);
-
-      console.log(random);
-
-      switch (random) {
-        case 1:
-          Actions.jogo({ id_materia: "28", nome_materia: "Português" })
-        case 2:
-          Actions.jogo({ id_materia: "21", nome_materia: "Ciências" })
-        case 3:
-          Actions.jogo({ id_materia: "22", nome_materia: "Geografia" })
-        case 4:
-          Actions.jogo({ id_materia: "26", nome_materia: "Matemática" })
-        case 5:
-          Actions.jogo({ id_materia: "29", nome_materia: "História" })
-        default:
-          Actions.jogo({ id_materia: "21", nome_materia: "Ciências" })
-      }
-    }
-
-    function handleClickEscola(){
+    function handleClickEscola() {
       Alert.alert(`Olá!`, 'Seja bem vindo ao Futuro Nerd\nEscolha uma matéria e teste seu conhecimento!', [{ text: 'OK', onPress: () => null },], { cancelable: false })
     }
 
@@ -218,13 +213,13 @@ class Principal extends React.Component {
         <View style={styles.container}>
           <View style={{
             flexDirection: 'row', alignItems: 'center', backgroundColor: '#EBAB6C',
-            position: 'absolute', left: 5, top: 15, borderRadius: 20
+            position: 'absolute', left: 5, top: 25, borderRadius: 20, paddingVertical: 5, paddingHorizontal: 20
           }}>
             <Text style={styles.textName}>{this.props.nome}</Text>
             {/* <Text style={styles.textName}>Marcel</Text> */}
-            <Button transparent onPress={() => Actions.configuracoes()}>
+            {/* <Button transparent onPress={() => Actions.configuracoes()}>
               <Icon style={styles.headerConfig} ios='md-settings' android="md-cog" />
-            </Button>
+            </Button> */}
           </View>
 
           <View style={{ flexDirection: "row", alignItems: 'center', position: 'absolute', right: 5, top: 20 }}>
@@ -363,15 +358,29 @@ class Principal extends React.Component {
                 source={require('../imgs/nuvem.png')} />
             </View>
 
-            <View style={{ position: 'absolute', zIndex: 200, top: 490, left: -110, backgroundColor: '#EBAB6C', 
-              width: '110%', display: 'flex', flexDirection: 'row', height: '40%', alignItems: 'center', justifyContent: 'space-between', 
-              paddingLeft: 50, paddingRight: 0 }} >
+            <View style={{
+              position: 'absolute', zIndex: 200, top: 490, left: -110, backgroundColor: '#EBAB6C',
+              width: '110%', display: 'flex', flexDirection: 'row', height: '40%', alignItems: 'center', justifyContent: 'space-between',
+              paddingLeft: 50, paddingRight: 0
+            }} >
               <TouchableOpacity style={{ marginLeft: 0 }} onPress={() => Actions.loja()}>
                 <Icon style={styles.iconBoxes} ios='ios-cart' android='md-cart' />
               </TouchableOpacity>
-              <TouchableOpacity style={{ marginRight: 85 }} onPress={() => Actions.loja()}>
+              {/* <TouchableOpacity style={{ marginRight: 85 }} onPress={() => Actions.loja()}>
                 <Icon style={styles.iconBoxes} ios='ios-cart' android='md-cart' />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
+
+              {this.state.gender == "Menino" ?
+                <TouchableOpacity style={{ marginRight: 85 }} onPress={() => Actions.completados()}>
+                  <Image style={styles.genderImg}
+                    source={require('../imgs/smile.png')} />
+                </TouchableOpacity>
+                :
+                <TouchableOpacity style={{ marginRight: 85 }} onPress={() => Actions.completados()}>
+                  <Image style={styles.genderImg}
+                    source={require('../imgs/child.png')} />
+                </TouchableOpacity>
+              }
             </View>
 
             {/* <TouchableOpacity onPress={() => Actions.completados()}>
@@ -463,9 +472,9 @@ const styles = StyleSheet.create({
     // top: 20,
     color: '#292827',
     fontWeight: 'bold',
-    fontSize: 18,
-    paddingLeft: 25,
-    paddingRight: 15,
+    fontSize: 22,
+    // paddingLeft: 25,
+    // paddingRight: 15,
   },
   ilhasButton: {
     // position: 'absolute',
@@ -495,4 +504,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#f5e067'
   },
+  genderImg: {
+    width: 40,
+    height: 40,
+  }
 })

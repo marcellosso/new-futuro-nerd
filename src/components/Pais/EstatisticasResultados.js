@@ -41,7 +41,7 @@ class EstatisticasResultados extends React.Component{
       }
     }
 
-    componentWillMount(){
+    UNSAFE_componentWillMount(){
         this.buscaTotalQuestoes(this.props.id_materia,this.props.id_serie);
         this.buscaQuestoesRespondidas(this.props.id_filho,this.props.id_materia,this.props.id_serie);
         this.buscaQuestoesErradas(this.props.id_filho,this.props.id_materia,this.props.id_serie);

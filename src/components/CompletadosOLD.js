@@ -55,6 +55,59 @@ class Completados extends React.Component {
 
     render() {
         return (
+            //   <Container style={{backgroundColor:'#ffffff'}}>
+            //       <ImageBackground style={{flex:1}} blurRadius={0.6} imageStyle={{resizeMode: 'cover'}} source={require('../imgs/background-t2.jpg')} >
+            //           <Menu tipo="voltar" nome={this.props.nome} pts={this.props.pts}/>
+            //           <Content>
+            //             <List padder>
+            //               <ListItem itemDivider style={{backgroundColor:"#b7eaff",justifyContent:"center",paddingTop:2,paddingBottom:6}}>
+            //                 <Icon style={{fontSize:18,color:'#338fb5'}} ios='ios-checkmark-circle-outline' android='md-checkmark-circle-outline' />
+            //                 <Text style={{fontSize:15,color:'#338fb5'}}> Questōes Completadas</Text>
+            //               </ListItem>
+            //             </List>
+            //             {/*<List>
+            //             {this.props.relatorio_questoes_completadas.map((relatorio, index) => {
+            //                 return (
+            //                   <ListItem  style={{marginLeft:0,paddingLeft:10,backgroundColor:"#ffffff"}} key={relatorio.id_materia}>
+            //                       <Body>
+            //                           <Text style={{fontSize:15,color:"#000000"}}>{relatorio.materia} ({relatorio.qtd_respondidas}/{relatorio.qtd_questoes})</Text>
+            //                       </Body>
+            //                   </ListItem>
+            //                 )
+            //             })}
+            //             </List>*/}
+            //               <Grid style={styles.grid}>
+            //                   <Row>
+            //                       <Col style={styles.gridCol}>
+            //                           <Text style={styles.gridHeader1}>Matéria</Text>
+            //                       </Col>
+            //                       <Col style={styles.gridCol}>
+            //                           <Text style={styles.gridHeader2}>Respondidas</Text>
+            //                       </Col>
+            //                       <Col style={styles.gridCol}>
+            //                           <Text style={styles.gridHeader2}>Perguntas</Text>
+            //                       </Col>
+            //                   </Row>
+            //                   {this.props.relatorio_questoes_completadas.map((relatorio, index) => {
+            //                       return (
+            //                           <Row key={relatorio.id_materia}>
+            //                               <Col style={styles.gridCol}>
+            //                                   <Text style={styles.gridText1}>{relatorio.materia}</Text>
+            //                               </Col>
+            //                               <Col style={styles.gridCol}>
+            //                                   <Text style={styles.gridText2}>{relatorio.qtd_respondidas}</Text>
+            //                               </Col>
+            //                               <Col style={styles.gridCol}>
+            //                                   <Text style={styles.gridText2}>{relatorio.qtd_questoes}</Text>
+            //                               </Col>
+            //                           </Row>
+            //                       )
+            //                   })}
+            //               </Grid>
+            //           </Content>
+            //       </ImageBackground>
+            //   </Container>
+
             <ImageBackground style={styles.container} imageStyle={{ resizeMode: 'cover' }} source={require('../imgs/bgProfile.jpg')} >
                 <View style={styles.bannerContainer} >
                     <View style={{
@@ -74,20 +127,7 @@ class Completados extends React.Component {
                             <Image style={styles.profileImg}
                                 source={require('../imgs/child.png')} />
                         }
-
                     </View>
-                    <Text style={{ marginTop: 10, fontWeight: 'bold', fontSize: 24 }}>{this.props.nome}</Text>
-
-                    <View style={{ display: 'flex', flexDirection: 'row', position: 'absolute', right: 20, top: 30 }} >
-                        <Image style={styles.headerAward}
-                            source={require('../imgs/award.png')} />
-                        <Text style={styles.headerPontos}>{this.props.pts}</Text>
-                    </View>
-
-                    <TouchableOpacity onPress={() => Actions.pop()} style={{ display: 'flex', flexDirection: 'row', position: 'absolute', left: 20, top: 30 }} >
-                        <Image style={styles.headerAward}
-                            source={require('../imgs/home2.png')} />
-                    </TouchableOpacity>
 
                 </View>
                 <View style={styles.contentContainer}>
@@ -227,16 +267,5 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         marginRight: 20
-    },
-    headerAward: {
-        width: 70,
-        height: 70
-    },
-    headerPontos: {
-        position: 'absolute',
-        left: 23.5,
-        top: 8,
-        fontWeight: 'bold',
-        fontSize: 18
     }
 });

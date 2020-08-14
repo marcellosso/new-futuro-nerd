@@ -9,7 +9,9 @@ import {
     ActivityIndicator,
     Platform,
     Alert,
-    StatusBar
+    StatusBar,
+    AsyncStorage,
+    TouchableOpacity
 } from 'react-native';
 import {
     Container,
@@ -26,16 +28,40 @@ import { modificaEmailFilho, modificaSenhaFilho, autenticaFilho } from '../actio
 
 class Welcome extends React.Component {
 
+    // renderBtnLoginNew() {
+    //     return (
+    //         <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    //             <Button style={styles.newBtnEntrar} onPress={() => Actions.login()}>
+    //                 <Text style={styles.txtBotao2}> > </Text>
+    //             </Button>
+    //         </View>
+    //     )
 
-    renderBtnLoginNew() {
-        return (
-            <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Button style={styles.newBtnEntrar} onPress={() => Actions.login()}>
-                    <Text style={styles.txtBotao2}> > </Text>
-                </Button>
-            </View>
-        )
+    // }
 
+    async UNSAFE_componentWillMount() {
+        let icon = '';
+
+        icon = await AsyncStorage.getItem('@FuturoNerd/GenderIcon');
+        if (icon) Actions.login();
+
+    }
+
+
+    async handleMeninoClick() {
+        try {
+            await AsyncStorage.setItem('@FuturoNerd/GenderIcon', "Menino");
+        } catch(e) {
+            Alert.alert('Atenção!', 'Ocorreu um erro ao registrar o seu genero', [{ text: 'OK', onPress: () => null },], { cancelable: false })
+        }
+    }
+
+    async handleMeninaClick() {
+        try {
+            await AsyncStorage.setItem('@FuturoNerd/GenderIcon', "Menina");
+        } catch(e) {
+            Alert.alert('Atenção!', 'Ocorreu um erro ao registrar o seu genero', [{ text: 'OK', onPress: () => null },], { cancelable: false })
+        }
     }
 
     render() {
@@ -55,11 +81,33 @@ class Welcome extends React.Component {
                             </View>
 
 
-                            <Text style={{ textAlign: 'center', fontSize: 52, fontWeight: '600', marginVertical: 10, color: '#000', marginTop: 30 }}>
+                            <Text style={{ textAlign: 'center', fontSize: 52, fontWeight: 'bold', marginVertical: 10, color: '#000', marginTop: 30 }}>
                                 SEJA BEM VINDO
                                     </Text>
 
-                            {this.renderBtnLoginNew()}
+                            <Text style={{ textAlign: 'center', fontSize: 38, fontWeight: '700', marginVertical: 10, color: '#000', marginTop: 30 }}>
+                                QUEM VOCÊ É?
+                            </Text>
+
+                            {/* <View style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                                {this.renderBtnLoginNew()}
+                            </View> */}
+
+                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%', marginTop: 40 }}>
+                                <View style={{ marginRight: 25 }} >
+                                    <TouchableOpacity onPress={() => {this.handleMeninoClick()}} style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', padding: 20 }} >
+                                        <Image style={styles.imgChoice} source={require('../imgs/smile.png')} />
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View style={{ marginLeft: 25 }}>
+                                    <TouchableOpacity onPress={() => {this.handleMeninaClick()}} style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', padding: 20 }} >
+                                        <Image style={styles.imgChoice} source={require('../imgs/child.png')} />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+
+                            
 
 
                         </Animatable.View>
@@ -110,6 +158,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         textAlignVertical: 'center'
     },
+    imgChoice: {
+        width: 120,
+        height: 120
+    }
 
 
 });

@@ -7,11 +7,7 @@
 // PRODUCTION
 
 export const URL_API_FUTURONERD = 'https://87bc0a3e7cd1.ngrok.io';
-
-// export const URL_API_FUTURONERD = 'http://0.0.0.0:8080';
 export const URL_ADMIN_FUTURONERD = 'https://5d547027f21e.ngrok.io';
-// export const URL_API_FUTURONERD = 'http://www.futuronerd.net';
-// export const URL_ADMIN_FUTURONERD = 'http://admin.futuronerd.net';
 
 export const URL_CONSULTA_CEP = 'https://viacep.com.br/ws/';
 
